@@ -1,15 +1,16 @@
 # Image Processing Script
 
 This anonymized script automates the process of fetching, analyzing, and storing public images. 
-It extracts EXIF metadata and tags from images, storing the results in a DuckDB database. 
+It extracts EXIF metadata and image tags, storing the results in a DuckDB database. 
+The script also includes duplicate detection and robust error handling.
 
 ## Features
 
-- **Web Scraping**: Fetches image data using `requests` and Selenium.
+- **Web Scraping**: Fetches image data using `requests` and `Selenium`.
 - **Image Processing**: Extracts EXIF metadata and image tags with `Pillow` and `pillow_heif`.
 - **Database Storage**: Stores image data, tags, and user comments in a DuckDB database.
 - **Duplicate Detection**: Detects and avoids storing duplicate or similar images.
-- **Logging & Error Handling**: Logs errors and retries failed requests, providing a robust process.
+- **Logging & Error Handling**: Logs errors and retries failed requests, ensuring a reliable process.
 
 ## Database Schema
 
@@ -24,5 +25,5 @@ The `images` table has the following structure:
 | `postId`       | BIGINT    | Related post ID.                    |
 | `username`     | TEXT      | Uploader's username.                |
 | `web_url`      | TEXT      | Web page URL of the image.          |
-| `tags`         | TEXT[]    | Extracted tags.                     |
-| `user_comment` | TEXT      | EXIF user comment.                  |
+| `tags`         | TEXT[]    | Extracted image tags.               |
+| `user_comment` | TEXT      | Extracted from EXIF metadata.       |
